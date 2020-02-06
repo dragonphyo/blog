@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+             xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="./layout/adminlayout.html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <body>
+<div layout:fragment="admin">
+    <div class="container">
+
+        <div>
+            <p role="alert" class=" alert-success">
+                    New Blog created successfully.
+            </p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-dark mt-5">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Body</th>
+                    <th>Author</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="blog : ${blogs}">
+                    <td th:text="${blog.title}"></td>
+                    <td th:text="${blog.category}"></td>
+                    <td th:text="${#strings.substring(blog.body,0,20)}"></td>
+                    <td th:text="${blog.author.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="#" th:href="@{/blog}" class="btn btn-primary">New Blog</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
