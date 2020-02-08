@@ -8,4 +8,6 @@ public interface BlogService {
     Blog create(Blog blog);
     Blog findById(int id);
     List<Blog> findAll();
+    public void deleteById(int id);
+    public void update(int id,Blog blog);
 }

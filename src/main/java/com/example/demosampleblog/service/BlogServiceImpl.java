@@ -3,6 +3,7 @@ package com.example.demosampleblog.service;
 import com.example.demosampleblog.domain.Blog;
 import com.example.demosampleblog.repository.BlogRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,5 +29,20 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> findAll() {
         return blogRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(int id) {
+         blogRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void update(int id, Blog blog) {
+        Blog oldBlog = findById(id);
+        oldBlog.setAuthor(blog.getAuthor());
+        oldBlog.setBody(blog.getBody());
+        oldBlog.setCategory(blog.getCategory());
+        oldBlog.setTitle(blog.getTitle());
     }
 }
